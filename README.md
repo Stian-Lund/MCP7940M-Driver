@@ -1,4 +1,4 @@
-# STM32F429-MCP7940M-Driver
+# MCP7940M Driver for STM32F429
 
 This repository contains the driver for the MCP7940M Real-Time Clock (RTC) using the STM32F429 microcontroller. The driver provides functions to initialize the RTC, set and get the time, and read/write individual time registers. It uses the HAL library for I2C communication.
 

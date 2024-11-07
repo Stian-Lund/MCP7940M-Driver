@@ -39,7 +39,7 @@
 /*
  * DEFINES
  */
-#define MCP7940M_I2C_ADDRESS (0x1101111 << 1) /* Datasheet p.8 */
+#define MCP7940M_I2C_ADDRESS (0x6F << 1) /* Datasheet p.8 */
 
 /*
  * REGISTERS

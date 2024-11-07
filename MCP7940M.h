@@ -103,7 +103,7 @@ typedef struct
 /*
  * INITIALISATION
  */
-uint8_t MCP7940M_Init(MCP7940M *p_mcp7940m, I2C_HandleTypeDef *p_i2cHandle);
+void MCP7940M_Init(MCP7940M *p_mcp7940m, I2C_HandleTypeDef *p_i2cHandle);
 
 /*
  * GET AND SET TIME
@@ -120,24 +120,24 @@ HAL_StatusTypeDef MCP7940M_WriteRegister(MCP7940M *mcp7940m, uint8_t reg, uint8_
 /*
  * TIME READ FUNCTIONS
  */
-HAL_StatusTypeDef MCP7940M_ReadSeconds(MCP7940M *p_mcp7940m);
-HAL_StatusTypeDef MCP7940M_ReadMinutes(MCP7940M *p_mcp7940m);
-HAL_StatusTypeDef MCP7940M_ReadHours(MCP7940M *p_mcp7940m);
-HAL_StatusTypeDef MCP7940M_ReadWeekday(MCP7940M *p_mcp7940m);
-HAL_StatusTypeDef MCP7940M_ReadDate(MCP7940M *p_mcp7940m);
-HAL_StatusTypeDef MCP7940M_ReadMonth(MCP7940M *p_mcp7940m);
-HAL_StatusTypeDef MCP7940M_ReadYear(MCP7940M *p_mcp7940m);
+void MCP7940M_ReadSeconds(MCP7940M *p_mcp7940m);
+void MCP7940M_ReadMinutes(MCP7940M *p_mcp7940m);
+void MCP7940M_ReadHours(MCP7940M *p_mcp7940m);
+void MCP7940M_ReadWeekday(MCP7940M *p_mcp7940m);
+void MCP7940M_ReadDate(MCP7940M *p_mcp7940m);
+void MCP7940M_ReadMonth(MCP7940M *p_mcp7940m);
+void MCP7940M_ReadYear(MCP7940M *p_mcp7940m);
 
 /*
  * TIME WRITE FUNCTIONS
  */
-HAL_StatusTypeDef MCP7940M_WriteSeconds(MCP7940M *p_mcp7940m);
-HAL_StatusTypeDef MCP7940M_WriteMinutes(MCP7940M *p_mcp7940m);
-HAL_StatusTypeDef MCP7940M_WriteHours(MCP7940M *p_mcp7940m);
-HAL_StatusTypeDef MCP7940M_WriteWeekday(MCP7940M *p_mcp7940m);
-HAL_StatusTypeDef MCP7940M_WriteDate(MCP7940M *p_mcp7940m);
-HAL_StatusTypeDef MCP7940M_WriteMonth(MCP7940M *p_mcp7940m);
-HAL_StatusTypeDef MCP7940M_WriteYear(MCP7940M *p_mcp7940m);
+void MCP7940M_WriteSeconds(MCP7940M *p_mcp7940m);
+void MCP7940M_WriteMinutes(MCP7940M *p_mcp7940m);
+void MCP7940M_WriteHours(MCP7940M *p_mcp7940m);
+void MCP7940M_WriteWeekday(MCP7940M *p_mcp7940m);
+void MCP7940M_WriteDate(MCP7940M *p_mcp7940m);
+void MCP7940M_WriteMonth(MCP7940M *p_mcp7940m);
+void MCP7940M_WriteYear(MCP7940M *p_mcp7940m);
 
 /*
  * UTILITY FUNCTIONS

@@ -111,7 +111,7 @@ void MCP7940M_ReadSeconds(MCP7940M *p_mcp7940m)
 {
     uint8_t seconds;
     uint8_t bcdSeconds;
-    HAL_ReadRegister(p_mcp7940m, MCP7940M_REG_RTCSEC, &bcdSeconds);
+    MCP7940M_ReadRegister(p_mcp7940m, MCP7940M_REG_RTCSEC, &bcdSeconds);
     bcdSeconds &= 0b01111111; // Discard the ST bit.
     seconds = BCDToBinary(bcdSeconds);
     p_mcp7940m->seconds = seconds;
@@ -121,7 +121,7 @@ void MCP7940M_ReadMinutes(MCP7940M *p_mcp7940m)
 {
     uint8_t minutes;
     uint8_t bcdMinutes;
-    HAL_ReadRegister(p_mcp7940m, MCP7940M_REG_RTCMIN, &bcdMinutes);
+    MCP7940M_ReadRegister(p_mcp7940m, MCP7940M_REG_RTCMIN, &bcdMinutes);
     minutes = BCDToBinary(bcdMinutes);
     p_mcp7940m->minutes = minutes;
 }
@@ -130,7 +130,7 @@ void MCP7940M_ReadHours(MCP7940M *p_mcp7940m)
 {
     uint8_t hours;
     uint8_t bcdHours;
-    HAL_ReadRegister(p_mcp7940m, MCP7940M_REG_RTCHOUR, &bcdHours);
+    MCP7940M_ReadRegister(p_mcp7940m, MCP7940M_REG_RTCHOUR, &bcdHours);
     bcdHours &= 0b00111111; // Discard the 12/24 bit.
     hours = BCDToBinary(bcdHours);
     p_mcp7940m->hours = hours;
@@ -139,7 +139,7 @@ void MCP7940M_ReadHours(MCP7940M *p_mcp7940m)
 void MCP7940M_ReadWeekday(MCP7940M *p_mcp7940m)
 {
     uint8_t weekday;
-    HAL_ReadRegister(p_mcp7940m, MCP7940M_REG_RTCWKDAY, &weekday);
+    MCP7940M_ReadRegister(p_mcp7940m, MCP7940M_REG_RTCWKDAY, &weekday);
     weekday &= 0b00000111; // Discard the OSCRUN bit.
     p_mcp7940m->weekday = weekday;
 }
@@ -148,7 +148,7 @@ void MCP7940M_ReadDate(MCP7940M *p_mcp7940m)
 {
     uint8_t date;
     uint8_t bcdDate;
-    HAL_ReadRegister(p_mcp7940m, MCP7940M_REG_RTCDATE, &bcdDate);
+    MCP7940M_ReadRegister(p_mcp7940m, MCP7940M_REG_RTCDATE, &bcdDate);
     date = BCDToBinary(bcdDate);
     p_mcp7940m->date = date;
 }
@@ -157,7 +157,7 @@ void MCP7940M_ReadMonth(MCP7940M *p_mcp7940m)
 {
     uint8_t month;
     uint8_t bcdMonth;
-    HAL_ReadRegister(p_mcp7940m, MCP7940M_REG_RTCMTH, &bcdMonth);
+    MCP7940M_ReadRegister(p_mcp7940m, MCP7940M_REG_RTCMTH, &bcdMonth);
     bcdMonth &= 0b00011111; // Discard the LP bit.
     month = BCDToBinary(bcdMonth);
     p_mcp7940m->month = month;
@@ -167,7 +167,7 @@ void MCP7940M_ReadYear(MCP7940M *p_mcp7940m)
 {
     uint8_t year;
     uint8_t bcdYear;
-    HAL_ReadRegister(p_mcp7940m, MCP7940M_REG_RTCYEAR, &bcdYear);
+    MCP7940M_ReadRegister(p_mcp7940m, MCP7940M_REG_RTCYEAR, &bcdYear);
     year = BCDToBinary(bcdYear);
     p_mcp7940m->year = year;
 }
@@ -175,42 +175,42 @@ void MCP7940M_ReadYear(MCP7940M *p_mcp7940m)
 void MCP7940M_WriteSeconds(MCP7940M *p_mcp7940m)
 {
     uint8_t bcdSeconds = binaryToBCD(p_mcp7940m->seconds);
-    HAL_WriteRegister(p_mcp7940m, MCP7940M_REG_RTCSEC, bcdSeconds | 1 << 7); // Set the ST bit.
+    MCP7940M_WriteRegister(p_mcp7940m, MCP7940M_REG_RTCSEC, bcdSeconds | 1 << 7); // Set the ST bit.
 }
 
 void MCP7940M_WriteMinutes(MCP7940M *p_mcp7940m)
 {
     uint8_t bcdMinutes = binaryToBCD(p_mcp7940m->minutes);
-    HAL_WriteRegister(p_mcp7940m, MCP7940M_REG_RTCMIN, bcdMinutes);
+    MCP7940M_WriteRegister(p_mcp7940m, MCP7940M_REG_RTCMIN, bcdMinutes);
 }
 
 void MCP7940M_WriteHours(MCP7940M *p_mcp7940m)
 {
     uint8_t bcdHours = binaryToBCD(p_mcp7940m->hours);
-    HAL_WriteRegister(p_mcp7940m, MCP7940M_REG_RTCHOUR, bcdHours & ~(1 << 6)); // Clear the 12/24 bit.
+    MCP7940M_WriteRegister(p_mcp7940m, MCP7940M_REG_RTCHOUR, bcdHours & ~(1 << 6)); // Clear the 12/24 bit.
 }
 
 void MCP7940M_WriteWeekday(MCP7940M *p_mcp7940m)
 {
-    HAL_WriteRegister(p_mcp7940m, MCP7940M_REG_RTCWKDAY, p_mcp7940m->weekday);
+    MCP7940M_WriteRegister(p_mcp7940m, MCP7940M_REG_RTCWKDAY, p_mcp7940m->weekday);
 }
 
 void MCP7940M_WriteDate(MCP7940M *p_mcp7940m)
 {
     uint8_t bcdDate = binaryToBCD(p_mcp7940m->date);
-    HAL_WriteRegister(p_mcp7940m, MCP7940M_REG_RTCDATE, bcdDate);
+    MCP7940M_WriteRegister(p_mcp7940m, MCP7940M_REG_RTCDATE, bcdDate);
 }
 
 void MCP7940M_WriteMonth(MCP7940M *p_mcp7940m)
 {
     uint8_t bcdMonth = binaryToBCD(p_mcp7940m->month);
-    HAL_WriteRegister(p_mcp7940m, MCP7940M_REG_RTCMTH, bcdMonth & ~(1 << 5)); // Clear the LP bit.
+    MCP7940M_WriteRegister(p_mcp7940m, MCP7940M_REG_RTCMTH, bcdMonth & ~(1 << 5)); // Clear the LP bit.
 }
 
 void MCP7940M_WriteYear(MCP7940M *p_mcp7940m)
 {
     uint8_t bcdYear = binaryToBCD(p_mcp7940m->year);
-    HAL_WriteRegister(p_mcp7940m, MCP7940M_REG_RTCYEAR, bcdYear);
+    MCP7940M_WriteRegister(p_mcp7940m, MCP7940M_REG_RTCYEAR, bcdYear);
 }
 
 uint8_t BCDToBinary(uint8_t bcd)
